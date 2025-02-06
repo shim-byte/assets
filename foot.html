@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<title>CSAT</title>
+<style>
+.bf-container,.container{position:relative;display:flex}.container,.popup,body{display:flex}.container,.popup-content{border-radius:10px;text-align:center}.btn,.container,.feedback-button,.popup-content{text-align:center}.container h3,.good-rating-container p{font-weight:700}.bad-rating-container button,.best-rating-container button,.finish-rating-container button,.good-rating-container button{background:linear-gradient(45deg,#ff6700,#fe8e0c);transition:background .3s}body{justify-content:center;align-items:center;height:100vh;margin:0;background-color:rgba(0,0,0,0);font-family:Rubik,Arial,sans-serif;overflow:hidden;width:100%}.bf-container{min-height:100vh;width:100%;justify-content:center;align-items:center}.container{flex-direction:column;align-items:center;transition:opacity .3s ease-in-out}.container h3{color:#002953;font-size:19px}.popup{position:fixed;z-index:1;left:0;top:0;width:100%;height:100%;flex-direction:column;justify-content:center;align-items:center;overflow:auto}.popup-content{background-color:#fff;width:100%;max-width:540px;margin:0 auto;height:auto;padding:12px 16px 24px;position:relative;display:block}.popup button.close{display:inline-block;background-color:rgba(116,116,128,0.08);border:none;outline:0;cursor:pointer;position:absolute;top:10px;right:15px;z-index:1;width: 25px;height: 25px;border-radius: 100%;line-height: 25px;}.feedback-button-container{display:flex;justify-content:center;width:auto}.feedback-button{width:70px;height:70px;border:none;cursor:pointer;background-color:rgba(236,211,211,0);color:#d0cdcd}.btn,.cat{border-radius:40px;cursor:pointer}.star-container{position:relative;width:70px;height:70px;cursor:pointer}.btn{width:200px;height:40px;padding:10px;gap:10px;opacity:1px;background:linear-gradient(97.13deg,#ff6700 5.56%,#fe8e0c 94.44%);font-family:Rubik;font-size:14px;font-weight:500;line-height:17px;color:#fff;transition:.3s}.btn:hover{color:#fff}button:focus{outline:0}.bad-rating-container,.best-rating-container,.good-rating-container{display:none;background-color:#fff;padding:20px;border-radius:10px;text-align:center;position:relative;align-items:flex-end;transition:opacity .3s ease-in-out;overflow:hidden}.good-rating-content{border:1px solid #ccc;padding:15px;border-radius:10px;box-sizing:border-box;margin:10px 0}.good-rating-container h3{margin:10px 0}.best-rating-container button,.good-rating-container button{margin:20px 0 0;color:#fff;border:none;border-radius:50px;cursor:pointer;width:fit;text-transform:uppercase;padding:10px 20px;font-weight:600;font-size:small}.bad-rating-container button:hover,.best-rating-container button:hover,.finish-rating-container button:hover,.good-rating-container button:hover{background:linear-gradient(45deg,#ffc000,#e07d00)}.bad-rating-container h6{text-align:left;font-weight:bolder;font-size:small;margin-top:-10px}.bad-rating-container button,.bad-rating-container input,.bad-rating-container textarea{margin:10px 0;text-align:left;font-size:small; color: #333333}.bad-rating-container label{margin-bottom:0;text-align:left;display:block;font-size:small;padding-left:0;border-radius:5px}.bad-rating-container input[type=checkbox]{transform:scale(1);margin-right:5px;vertical-align:middle}.bad-rating-container p{text-align:center;font-weight:700;font-size:small;margin-top:-2%;margin-bottom:5px}.bad-rating-container textarea{width:100%;padding:5px;box-sizing:border-box;resize:vertical;margin-top:-2px;font-size:small;margin-bottom:-10px}.bad-rating-container button{color:#fff;border:none;border-radius:50px;cursor:pointer;width:auto;padding:10px 20px;margin-bottom:0}.bad-rating-container textarea::placeholder{font-family:Rubik,Arial,sans-serif;font-size:small}.bad-additional-details{display:none}.bad-additional-details p{margin-top:8px;text-align:left;margin-bottom:10px}.finish-rating-container{display:none;background-color:rgb(255,255,255,0);padding:0;border-radius:10px;text-align:center;position:relative;align-items:flex-end;transition:opacity .3s ease-in-out;overflow:hidden}.finish-rating-container h3{margin-top:0;position:relative}.finish-rating-content{border-radius:10px;box-sizing:border-box;margin:10px 0 0}.finish-rating-container p{font-size:14px;color:grey}.finish-rating-container button{margin:10px 0 0;color:#fff;border:none;border-radius:50px;cursor:pointer;width:150px;padding:13px 23px}.finish-rating-container h5{color:#002953;font-weight:700}.cat label input+span,.pop textarea{color:#333333}.finish-rating-container img{margin-bottom:5px}label.label-clicked{border-color:orange}.top-head{position:relative}div label input{margin-right:100px}.cat{margin:4px;background-color:transparent;border:1px solid #d3dae1;overflow:hidden;float:left}.cat label{float:left;line-height:2em;width:210px;height:32px;border-radius:40px;cursor:pointer}.cat label span{text-align:center;padding:3px 0;display:block;font-size:14px;line-height:28px}.cat label input{position:absolute;display:none;color:#104068!important}.cat input:checked+span{color:#fff;text-shadow:0 0 6px rgba(0,0,0,.8)}.pop textarea{border:1px solid #e5eaf7;padding:12px;border-radius:5px;width:100%;margin-top:10px}.rotatable.rotate-180{transform:rotate(360deg)}.best img,.fair img,.good img,.poor img,.worst img{transition:.5s ease-out;outline:#fff solid 5px;border-radius:50%;margin-bottom:5px}.worst.active img{outline-color:#b80302;background:#b80302}.worst.active span{color:#b80302!important;font-weight:500!important}.poor.active img{outline-color:#5365ce;background:#5365ce}.poor.active span{color:#5365ce!important;font-weight:500!important}.fair.active img{outline-color:#f8b40a;background:#f8b40a}.fair.active span{color:#f8b40a!important;font-weight:500!important}.good.active img{outline-color:#00b5cf;background:#00b5cf}.good.active span{color:#00b5cf!important}.best.active img{outline-color:#04a47e;background:#04a47e}.best.active span{color:#04a47e!important}textarea::-webkit-input-placeholder{color:#4a6784}textarea:-moz-placeholder{color:#4a6784}textarea::-moz-placeholder{color:#4a6784}textarea:-ms-input-placeholder{color:#4a6784}.action input:checked+span{background-color:#002953;display:block}.thanks{width:191px;height:191px;border-radius:50%;margin-right:auto;margin-left:auto;display:flex;align-items:center;justify-content:center;background:linear-gradient(179.84deg,#effffe .14%,#d2fffc 99.86%);padding:14px 23px}@media (max-width:1024){body{display:flex;justify-content:center;align-items:center}}@media (max-width:576px){.cat label,.thanks{margin-right:auto;margin-left:auto}.thanks,body{display:flex}body{justify-content:center;align-items:end}.bf-container{display:flex;justify-content:end;align-items:center}.container{margin-bottom:0;padding:0}.popup{justify-content:end;align-items:center}.popup-content{border-radius:10px 10px 0 0}.feedback-button{width:60px;height:70px}.bad-rating-container{padding:0;text-align:center}.bad-rating-content h6{text-align:center}.cat label{width:145px}.thanks{width:179px;height:179px;border-radius:50%;align-items:center;justify-content:center;background:linear-gradient(179.84deg,#effffe .14%,#d2fffc 99.86%);padding:14px 23px}.cat label span{font-size:12px;line-height:26px}.cat label input{position:absolute;display:none;color:#104068!important}.pop{margin-bottom:10px}}@media (max-width:320px){.feedback-button{width:60px;height:70px}.cat label{width:125px}.cat label span{font-size:12px;line-height:26px}}
+</style>
+
+</head>
+
+<body>
+
+<div class="bf-container">
+<div class="container">
+
+<div id="myPopup" class="popup" style='display:none'>
+<div class="popup-content">
+<button id="close" class="close"><img src="https://www.bajajfinserv.in/MyAccountAsset/Login/images/icons-cross.svg" width="22" height="22" /></button>
+<div class="top-heading" style="margin-top: 24px; margin-bottom: 20px;">
+<h5 style="font-family: Rubik; font-size: 20px; line-height: 24px; font-weight: 600; text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color: rgba(31, 41, 55, 1);">Update request submitted!</h5>
+<p style="font-family: Rubik; font-size: 14px; line-height: 20px; font-weight: 400; text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color:rgba(75, 85, 99, 1);">Please rate your profile update experience</p>
+</div>
+
+<div class="feedback-button-container">
+<div class="star-container" onclick="handleStarSel(1)">
+<button class="feedback-button worst" value="1"><img src="https://drive.google.com/file/d/1jx9JfdPeGYRyv7bBV2ca5pWfE9d2ssFb/view?usp=share_link" class="rotatable" id="rotateImage" width="40" height="40" alt="Worst" /><br/><span style="font-family: Rubik; font-size: 14px; line-height: 20px; font-weight: 400; text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color:rgba(63, 63, 63, 1);">Worst</span></button>
+</div>
+<div class="star-container" onclick="handleStarSel(2)">
+<button class="feedback-button poor" value="2"><img src="https://cms-assets.bajajfinserv.in/is/content/bajajfinance/poor?scl=1&fmt=png-alpha" class="rotatable" id="rotateImage1" width="40" height="40" alt="Poor" /><br/><span style="font-family: Rubik; font-size: 14px; line-height: 20px; font-weight: 400; text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color:rgba(63, 63, 63, 1);">Poor</span></button>
+</div>
+<div class="star-container" onclick="handleStarSel(3)">
+<button class="feedback-button fair" value="3"><img src="https://cms-assets.bajajfinserv.in/is/content/bajajfinance/fair?scl=1&fmt=png-alpha" class="rotatable" id="rotateImage2" width="40" height="40" alt="Fair" /><br/><span style="font-family: Rubik; font-size: 14px; line-height: 20px; font-weight: 400; text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color:rgba(63, 63, 63, 1);">Fair</span></button>
+</div>
+<div class="star-container" onclick="handleStarSel(4)">
+<button class="feedback-button good" value="4"><img src="https://cms-assets.bajajfinserv.in/is/content/bajajfinance/good?scl=1&fmt=png-alpha" class="rotatable" id="rotateImage3" width="40" height="40" alt="Good" /><br/><span style="font-family: Rubik; font-size: 14px; line-height: 20px; font-weight: 400; text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color:rgba(63, 63, 63, 1);"> Good</span></button>
+</div>
+<div class="star-container" onclick="handleStarSel(5)">
+<button class="feedback-button best" value="5"><img src="https://cms-assets.bajajfinserv.in/is/content/bajajfinance/best-nps?scl=1&fmt=png-alpha" class="rotatable" id="rotateImage4" width="40" height="40" alt="Best" /><br/><span style="font-family: Rubik; font-size: 14px; line-height: 20px; font-weight: 400; text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color:rgba(63, 63, 63, 1);"> Great</span></button>
+</div>
+</div>
+
+<div class="bad-rating-container">
+<div style="width: 100%; display: block; border-bottom: 1px dashed rgba(179, 203, 227, 1); margin-bottom: 30px;"></div>
+<div class="bad-rating-content">
+<h6>Sorry to know that. Tell us what went wrong</h6>
+<div class="cat action">
+<label>
+<input type="checkbox" name="options" class="checkBtn first" value="Difficult navigation"><span>Difficult navigation</span>
+</label>
+</div>
+<div class="cat action">
+<label>
+<input type="checkbox" name="options" class="checkBtn second" value="Process is not easy"><span>Process is not easy</span>
+</label>
+</div>
+
+<div class="cat action">
+<label>
+<input type="checkbox" name="options" class="checkBtn third" value="Steps are not simple"><span>Steps are not simple</span>
+</label>
+</div>
+
+<div class="cat action">
+<label>
+<input type="checkbox" name="options" class="checkBtn fourth" value="Technical issue"><span>Technical issue</span>
+</label>
+</div>
+<div class="pop">
+<textarea id="additionalDetails" name="additionalDetails" minlength="20" maxlength="200" placeholder="Tell us more upto 200 characters.." class=""></textarea>
+</div>
+<!-- <label>
+<input type="checkbox" name="options" value="Unclear information provided">Unclear information provided</label>
+<label>
+<input type="checkbox" name="options" value="Fees and charges not explained">Fees and charges not explained</label>
+<label>
+<input type="checkbox" name="options" value="other"> Others - Add a comment</label> -->
+<!-- <div class="bad-additional-details">
+<textarea id="additionalDetails" name="additionalDetails" rows="2"
+placeholder="Please don't include any personal information; minimum 10 characters required"></textarea>
+</div> -->
+</div>
+</div>
+<div id="error-message" class="error-message" style="color: red; display: none; margin-top: 10px; margin-bottom: 6px;">⚠ Please select any of the options</div>
+<div class="rating-butn" style="margin-top: 10px;">
+<button id="submit" class="btn submit"><strong>SUBMIT </strong></button>
+</div>
+
+<div class="good-rating-container" style="padding-bottom: 0px;">
+<div class="thanks">
+<div>
+<img class="good-tick-mark" src="https://cms-assets.bajajfinserv.in/is/content/bajajfinance/thanks-new?scl=1&fmt=png-alpha" alt="Thanks" width="140" />
+<img class="good-tick-mark" src="https://cms-assets.bajajfinserv.in/is/image/bajajfinance/shadow?scl=1&fmt=png-alpha" alt="shadow" width="95" style="margin-top: -20px;" />
+</div>
+</div>
+<button class="btn submit" onclick="handlegoodSubmit()">Rate us on APP store</button>
+</div>
+
+<div class="best-rating-container" style="padding-bottom: 0px;">
+<div class="thanks">
+<div>
+<img class="good-tick-mark" src="https://cms-assets.bajajfinserv.in/is/content/bajajfinance/thanks-new?scl=1&fmt=png-alpha" alt="Thanks" width="140" />
+<img class="good-tick-mark" src="https://cms-assets.bajajfinserv.in/is/image/bajajfinance/shadow?scl=1&fmt=png-alpha" alt="shadow" width="95" style="margin-top: -20px;" />
+</div>
+</div>
+<button class="btn submit" onclick="handlegoodSubmit()">Rate us on APP store</button>
+</div>
+
+
+<div class="finish-rating-container" style="background-image: url('https://cms-assets.bajajfinserv.in/is/image/bajajfinance/rating-04-11-24?scl=1&fmt=png-alpha'); background-size: auto; background-position: top center; background-repeat: no-repeat;">
+<img src="https://cms-assets.bajajfinserv.in/is/image/bajajfinance/feedback-04-11-24?scl=1&fmt=png-alpha" alt="tick mark" width="78" height="78" />
+<h5>Thank you for your feedback!</h5>
+<div class="finish-rating-content">
+<p>We'll use this to serve you better</p>
+<button onclick="window.location.href='https://c2gx.app.link/homePage'" class="btn submit">Done</button>
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+function PopUp(hideOrshow) {
+if (hideOrshow == 'hide') document.getElementById('myPopup').style.display = "none";
+else document.getElementById('myPopup').removeAttribute('style');
+}
+window.onload = function () {
+setTimeout(function () {
+PopUp('show');
+}, 1000);
+}
+</script>
+
+<script>
+document.querySelector("#close").addEventListener("click", function(){
+//document.querySelector("#myPopup").style.display = "none";
+if(window.CleverTap)
+{
+CleverTap.dismissInAppNotification();
+}
+});
+</script>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myPopup");
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+}
+</script>
+
+<script>
+
+let starval = 0;
+let campaign_name = "SERVICE-B2B-E-Agreement-5STAR-1";
+const labels = document.querySelectorAll('label input[type="checkbox"]');
+const checkButton = document.querySelectorAll('.checkBtn');
+let isReasonChecked = 0;
+const errorMessage = document.getElementById('error-message');
+
+document.getElementById('submit').addEventListener('click', function () {
+const selectedReasons = document.querySelectorAll('input[name="options"]:checked');
+const messageDetails = document.getElementById('additionalDetails').value;
+const messegeText = messageDetails.trim();
+
+console.log(messageDetails, "text lenght");
+// Check if no checkboxes are selected
+if (isReasonChecked === 0) {
+errorMessage.style.display = 'block';
+return;
+} else {
+errorMessage.style.display = 'none'; // Hide the error message if validation passes
+}
+
+if(messageDetails.length > 0 && messegeText.length < 20 || messegeText.length > 200){
+errorMessage.innerHTML = "Only 20 to 200 characters are accepted";
+errorMessage.style.display = 'block';
+return;
+}else{
+errorMessage.style.display = 'none';
+}
+// console.log(starval, "starval");
+// console.log(campaign_name);
+// If at least one checkbox is selected, proceed with submission
+var props = {
+EP_NPS_SCORE: starval,
+EP_NPS_JOURNEY: campaign_name,
+EP_COMMENT1:messageDetails
+};
+
+if (selectedReasons.length === 0) {
+errorMessage.style.display = 'block';
+return;
+} else {
+errorMessage.style.display = 'none'; // Hide the error message if validation passes
+}
+
+
+const additionalDetailsTextarea = document.getElementById('additionalDetails');
+// console.log(additionalDetailsTextarea.value);
+
+// 
+
+// Add selected reasons to props
+selectedReasons.forEach(function (checkbox) {
+switch (checkbox.value) {
+case 'Difficult navigation':
+props["EP_REASON1"] = checkbox.value;
+break;
+case 'Process is not easy':
+props["EP_REASON2"] = checkbox.value;
+break;
+case 'Steps are not simple':
+props["EP_REASON3"] = checkbox.value;
+break;
+case 'Technical issue':
+props["EP_REASON4"] = checkbox.value;
+break;
+// case 'other':
+// props["EP_REASON5"] = messageDetails;
+// break;
+default:
+break;
+}
+
+
+});
+console.log(props);
+
+if (window.CleverTap) {
+CleverTap.pushEvent("NPS_SUBMITTED", JSON.stringify(props));
+}
+
+// Hide the feedback container and show the finish-rating container
+document.querySelector('.bad-rating-container').style.display = 'none';
+document.querySelector('.feedback-button-container').style.display = 'none';
+document.querySelector('.top-heading').style.display = 'none';
+document.getElementById('submit').style.display = 'none';
+document.querySelector('.finish-rating-container').style.display = 'block';
+});
+
+function handleStarSel(starValue) {
+let feedbackbutton = document.querySelector('.feedback-button-container');
+feedbackbutton.style.transformOrigin = 'top';
+feedbackbutton.style.margin = '0';
+feedbackbutton.style.padding = '0';
+
+let badRatingContainer = document.querySelector('.bad-rating-container');
+badRatingContainer.style.width = '95%';
+badRatingContainer.style.border = '0px solid gray';
+badRatingContainer.style.margin = '0 auto';
+badRatingContainer.style.padding = '5';
+badRatingContainer.style.display = 'block';
+badRatingContainer.style.marginBottom = '0';
+feedbackbutton.style.marginTop = '0';
+if (starValue < 4) {
+if(starValue === 0) {
+document.querySelector('.bad-rating-container').style.display = 'none';
+document.querySelector('.good-rating-container').style.display = 'none';
+}
+document.querySelector('.good-rating-container').style.display = 'none';
+document.querySelector('.rating-butn').style.display = 'block';
+} else {
+document.querySelector('.bad-rating-container').style.display = 'none';
+document.querySelector('.rating-butn').style.display = 'none';
+document.querySelector('.error-message').style.display = 'none';
+document.querySelector('.good-rating-container').style.display = 'block';
+}
+if (starValue < 5) {
+document.querySelector('.best-rating-container').style.display = 'none';
+} else {
+document.querySelector('.bad-rating-container').style.display = 'none';
+document.querySelector('.error-message').style.display = 'none';
+document.querySelector('.good-rating-container').style.display = 'none';
+document.querySelector('.best-rating-container').style.display = 'block';
+document.querySelector('.rating-butn').style.display = 'none';
+}
+starval=starValue
+}
+if(starval === 0) {
+handleStarSel(starval);
+}
+function handlegoodSubmit() {
+var props = {
+EP_NPS_SCORE: starval,
+EP_NPS_JOURNEY:campaign_name
+};
+if (window.CleverTap) {
+CleverTap.pushEvent("NPS_SUBMITTED", JSON.stringify(props));
+}
+window.location.href='https://play.google.com/store/apps/details?id=org.altruist.BajajExperia&dl=bfl.onelink.me'
+}
+
+function handleStarClick(starValue) {
+const starContainers = document.querySelectorAll('.star-container');
+
+starContainers.forEach((container, index) => {
+const starButtons = container.querySelectorAll('.feedback-button');
+starButtons.forEach((button, buttonIndex) => {
+if (index === starValue) {
+button.classList.add('active');
+
+// Change the image source from .gif to .svg
+const img = button.querySelector('img'); // Assuming the image is within the button
+if (img && img.src.endsWith('.gif')) {
+img.src = img.src.replace('.gif', '.svg');
+}
+
+} else {
+button.classList.remove('active');
+
+// Optionally, change the image source back to .gif when inactive
+const img = button.querySelector('img');
+if (img && img.src.endsWith('.svg')) {
+img.src = img.src.replace('.svg', '.gif');
+}
+}
+});
+});
+}
+
+const images = document.querySelectorAll('.rotatable');
+
+images.forEach(image => {
+image.onclick = function() {
+if (image.classList.contains('rotate-180')) {
+image.classList.remove('rotate-180');
+} else {
+image.classList.add('rotate-180');
+}
+};
+});
+
+const starContainers = document.querySelectorAll('.star-container');
+
+starContainers.forEach((container, index) => {
+container.addEventListener('click', () => {
+handleStarClick(index);
+});
+});
+
+
+function handleStarHover(starValue) {
+const starContainers = document.querySelectorAll('.star-container');
+
+starContainers.forEach((container, index) => {
+const starButtons = container.querySelectorAll('.feedback-button');
+starButtons.forEach((button, buttonIndex) => {
+if (buttonIndex <= starValue && index <= starValue - 1) {
+button.classList.add('star-hover');
+} else {
+button.classList.remove('star-hover');
+}
+});
+});
+}
+
+starContainers.forEach((container, index) => {
+container.addEventListener('mouseover', () => {
+handleStarHover(index);
+});
+
+container.addEventListener('mouseout', () => {
+handleStarHover(-1);
+});
+});
+
+
+starContainers.forEach((container, index) => {
+container.addEventListener('touchstart', () => {
+handleStarHover(index);
+});
+
+container.addEventListener('touchend', () => {
+handleStarHover(-1);
+});
+});
+
+
+starContainers.forEach((container, index) => {
+container.addEventListener('click', () => {
+handleStarClick(index);
+});
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+function updateLabelBorder(event) {
+if (event.target.checked) {
+errorMessage.style.display = 'none';
+isReasonChecked = 1;
+}
+// checkSubmitValidity();
+}
+checkButton.forEach(function (checkbox) {
+checkbox.addEventListener('change', updateLabelBorder);
+});
+})
+
+</script>
+
+</body>
+</html>
